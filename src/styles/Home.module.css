@@ -13,7 +13,7 @@
   align-items: inherit;
   font-size: 0.85rem;
   max-width: var(--max-width);
-  width: 99%;
+  width: 59%;
   z-index: 2;
   font-family: var(--font-mono);
 }
