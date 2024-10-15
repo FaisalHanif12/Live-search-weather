@@ -8,9 +8,9 @@ const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
 
     useEffect(() => {
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
         fetchWeatherData(url);
-    }, []);
+    }, [city]); // Dependency on city to re-fetch when it changes
 
     const fetchWeatherData = async (url) => {
         try {
@@ -25,7 +25,7 @@ const Weather = () => {
 
     const searchByCity = async () => {
         try {
-            const urlsearch = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
+            const urlsearch = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
             const response = await axios.get(urlsearch);
             const data = response.data;
             console.log(data);
@@ -33,11 +33,10 @@ const Weather = () => {
         } catch (error) {
             console.error('Error fetching weather data:', error);
         }
-        setCity('');
     };
 
     const weatherReport = async (data) => {
-        const urlcast = `http://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${apikey}`;
+        const urlcast = `https://api.openweathermap.org/data/2.5/forecast?q=${data.name}&appid=${apikey}`;
         try {
             const response = await axios.get(urlcast);
             const forecast = response.data;
@@ -56,7 +55,7 @@ const Weather = () => {
             console.log(data.weather[0].description);
 
             let icon1 = data.weather[0].icon;
-            let iconurl = "http://api.openweathermap.org/img/w/" + icon1 + ".png";
+            let iconurl = `https://api.openweathermap.org/img/w/${icon1}.png`;
             document.getElementById('img').src = iconurl;
         } catch (error) {
             console.error('Error fetching forecast data:', error);
@@ -133,7 +132,6 @@ const Weather = () => {
                 <div>
                     <input
                         type="text"
-                        name=""
                         id="input"
                         placeholder="Enter city name"
                         value={city}
