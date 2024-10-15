@@ -165,7 +165,7 @@ const Weather = () => {
             <div className="divider-2"></div>
 
             <div className="forecast-2">
-                <p className="cast-header"> Next 4 days forecast</p>
+                <p className="cast-header"> Next 4 days Forecast</p>
                 <div className="forecast-list-2 weekF">
                     {/* Daily forecast will be rendered here */}
                 </div>
